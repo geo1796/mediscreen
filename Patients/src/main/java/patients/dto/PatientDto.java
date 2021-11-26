@@ -1,25 +1,32 @@
-package patients.model;
+package patients.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+import patients.constraint.ValidBirthdate;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
 
 @Getter
 @Setter
-public class Patient {
+public class PatientDto {
 
-    @Id
     private String id;
+    @NotBlank(message = "last name is mandatory")
     private String lastName;
+    @NotBlank(message = "first name is mandatory")
     private String firstName;
+    @NotBlank(message = "gender is mandatory")
     private String sex;
+    @NotBlank(message = "address is mandatory")
     private String address;
+    @NotBlank(message = "phone number is mandatory")
     private String phoneNumber;
-    private LocalDate birthdate;
+    @ValidBirthdate
+    private String birthdate;
 
-    public Patient(String lastName, String firstName, String sex, String address, String phoneNumber, LocalDate birthdate) {
+    public PatientDto(String lastName, String firstName, String sex, String address, String phoneNumber, String birthdate) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.sex = sex;
@@ -37,4 +44,5 @@ public class Patient {
                 " / phoneNumber = " + phoneNumber +
                 " / dateOfBirth = " + birthdate + " ]";
     }
+
 }
