@@ -2,16 +2,21 @@ package patients.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "Patient")
+@DynamicUpdate
 @Getter
 @Setter
 public class Patient {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String lastName;
     private String firstName;
     private String sex;

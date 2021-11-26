@@ -2,11 +2,9 @@ package patients.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 import patients.constraint.ValidBirthdate;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PastOrPresent;
 
 @Getter
 @Setter

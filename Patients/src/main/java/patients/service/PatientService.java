@@ -23,7 +23,7 @@ public class PatientService {
 
     public List<Patient> findAll() { return patientRepository.findAll(); }
 
-    public Optional<Patient> findById(String id) { return patientRepository.findById(id); }
+    public Optional<Patient> findById(long id) { return patientRepository.findById(id); }
 
     public Patient update(Patient patientDetails, Patient patientToUpdate) {
         patientToUpdate.setLastName(patientDetails.getLastName());
