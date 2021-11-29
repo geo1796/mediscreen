@@ -19,7 +19,5 @@ public class App implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        patientController.createPatient(new PatientDto(
-                "Son", "Goku", "M", "Namek", "0123456789", "1998-04-29"));
     }
 }
