@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PatientDetailsComponent implements OnInit {
 
-  id: string;
+  id: number;
   patient: Patient;
 
   constructor(private route: ActivatedRoute,private router: Router,

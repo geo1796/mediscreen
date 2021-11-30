@@ -10,7 +10,7 @@ import { PatientService } from '../patient.service';
 })
 export class UpdatePatientComponent implements OnInit {
 
-  id: string;
+  id: number;
   patient: Patient;
   submitted = false;
 

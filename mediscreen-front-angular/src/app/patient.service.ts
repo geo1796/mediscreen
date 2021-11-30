@@ -11,7 +11,7 @@ export class PatientService {
 
   constructor(private http: HttpClient) { }
 
-  getPatient(id: string): Observable<any> {
+  getPatient(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
@@ -19,11 +19,11 @@ export class PatientService {
     return this.http.post(`${this.baseUrl}`, patient);
   }
 
-  updatePatient(id: string, value: any): Observable<Object> {
+  updatePatient(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }
 
-  deletePatient(id: string): Observable<any> {
+  deletePatient(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 

@@ -24,7 +24,7 @@ import { PatientDetailsComponent } from '../patient-details/patient-details.comp
      this.patients = this.patientService.getPatientsList();
    }
 
-   deletePatient(id: string) {
+   deletePatient(id: number) {
      this.patientService.deletePatient(id)
        .subscribe(
          data => {
@@ -34,7 +34,11 @@ import { PatientDetailsComponent } from '../patient-details/patient-details.comp
          error => console.log(error));
    }
 
-   patientDetails(id: string){
+   patientDetails(id: number){
      this.router.navigate(['details', id]);
    }
+
+   updatePatient(id: number){
+            this.router.navigate(['update', id]);
+          }
  }
