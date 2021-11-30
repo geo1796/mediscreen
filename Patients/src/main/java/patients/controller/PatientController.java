@@ -33,7 +33,7 @@ public class PatientController {
         return ResponseEntity.ok(patientService.findAll());
     }
 
-    @GetMapping("/patients/{id}")
+    @GetMapping("/patient/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable long id) throws ResourceNotFoundException {
         logger.info("method getPatientById called for id = " + id);
         Optional<Patient> optionalPatient = patientService.findById(id);
@@ -46,13 +46,13 @@ public class PatientController {
         return ResponseEntity.ok(optionalPatient.get());
     }
 
-    @PostMapping("/patients")
+    @PostMapping("/patient/add")
     public ResponseEntity<Patient> createPatient(@Valid @RequestBody PatientDto patientDto){
         logger.info("method createPatient called " + patientDto.toString());
         return new ResponseEntity<>(patientService.save(patientDto), HttpStatus.CREATED);
     }
 
-    @PutMapping("/patients/{id}")
+    @PutMapping("/patient/{id}")
     public ResponseEntity<Patient> updatePatient(@Valid @RequestBody PatientDto patientDetails, @PathVariable long id) throws ResourceNotFoundException {
         logger.info("method updatePatient called [ id = " + id +
                 " ; patientDetails = " + patientDetails.toString() + " ]");
@@ -66,7 +66,7 @@ public class PatientController {
         return ResponseEntity.ok(patientService.update(patientDetails, optionalPatient.get()));
     }
 
-    @DeleteMapping("/patients/{id}")
+    @DeleteMapping("/patient/{id}")
     public Map<String, Boolean> deletePatient(@PathVariable long id) throws ResourceNotFoundException {
         logger.info("method deletePatient called for id = " + id);
         Optional<Patient> optionalPatient = patientService.findById(id);

@@ -27,7 +27,7 @@ public class PatientControllerIT {
 
     @Test
     public void testGetPatient() throws Exception {
-        mockMvc.perform(get("/patients/1"))
+        mockMvc.perform(get("/patient/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is("Goku")));
     }
@@ -42,12 +42,12 @@ public class PatientControllerIT {
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testCreatePatient() throws Exception {
-        mockMvc.perform(post("/patients")
+        mockMvc.perform(post("/patient/add")
                 .contentType(MediaType.APPLICATION_JSON).content(JsonStream.serialize(new PatientDto("Prince", "Vegeta", "M",
                         "CapsuleCorp", "0123456789", "1975-01-01"))))
                 .andExpect(status().isCreated());
 
-        mockMvc.perform(get("/patients/2"))
+        mockMvc.perform(get("/patient/2"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is("Vegeta")));
     }
@@ -60,7 +60,7 @@ public class PatientControllerIT {
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$", hasSize(1)));
 
-        mockMvc.perform(delete("/patients/1"))
+        mockMvc.perform(delete("/patient/1"))
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/patients"))
@@ -71,18 +71,18 @@ public class PatientControllerIT {
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testUpdatePatient() throws Exception {
-        mockMvc.perform(get("/patients/1"))
+        mockMvc.perform(get("/patient/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is("Goku")));
 
         PatientDto patientDto = new PatientDto(
                 "Prince", "Vegeta", "M",
                 "CapsuleCorp", "0123456789", "1975-01-01");
-        mockMvc.perform(put("/patients/1")
+        mockMvc.perform(put("/patient/1")
                 .contentType(MediaType.APPLICATION_JSON).content(JsonStream.serialize(patientDto)))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(get("/patients/1"))
+        mockMvc.perform(get("/patient/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is("Vegeta")));
     }
