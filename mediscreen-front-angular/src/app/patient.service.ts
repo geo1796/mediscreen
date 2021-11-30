@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PatientService {
 
-  private baseUrl = 'http://localhost:8080/patient';
+  private baseUrl = 'http://localhost:8081/patient';
 
   constructor(private http: HttpClient) { }
 
@@ -28,6 +28,6 @@ export class PatientService {
   }
 
   getPatientsList(): Observable<any> {
-    return this.http.get(`http://localhost:8080/patients`);
+    return this.http.get(`http://localhost:8081/patients`);
   }
 }

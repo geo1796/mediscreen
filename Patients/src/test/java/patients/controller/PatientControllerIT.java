@@ -87,4 +87,26 @@ public class PatientControllerIT {
                 .andExpect(jsonPath("$.firstName", is("Vegeta")));
     }
 
+    @Test
+    public void testGetNotExistingPatient() throws Exception {
+        mockMvc.perform(get("/patient/99999"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testUpdateNotExistingPatient() throws Exception {
+        mockMvc.perform(put("/patient/99999")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JsonStream.serialize(new PatientDto(
+                                "Son", "Gohan", "M", "Namek",
+                                "9999999999", "2000-01-01"))))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testDeleteNotExistingPatient() throws Exception {
+        mockMvc.perform(delete("/patient/99999"))
+                .andExpect(status().isNotFound());
+    }
+
 }
