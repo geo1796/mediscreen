@@ -24,6 +24,8 @@ public class PatientDto {
     @ValidBirthdate
     private String birthdate;
 
+    public PatientDto(){}
+
     public PatientDto(String lastName, String firstName, String sex, String address, String phoneNumber, String birthdate) {
         this.lastName = lastName;
         this.firstName = firstName;

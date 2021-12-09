@@ -12,7 +12,9 @@ import patients.dto.PatientDto;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.jsoniter.output.JsonStream;
@@ -107,6 +109,22 @@ public class PatientControllerIT {
     public void testDeleteNotExistingPatient() throws Exception {
         mockMvc.perform(delete("/patient/99999"))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testCreateNotValidPatient() throws Exception {
+        mockMvc.perform(post("/patients")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonStream.serialize(new PatientDto())))
+                .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    public void testUpdateNotValidPatient() throws Exception {
+        mockMvc.perform(put("/patient/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JsonStream.serialize(new PatientDto())))
+                .andExpect(status().isInternalServerError());
     }
 
 }
