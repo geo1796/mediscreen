@@ -45,13 +45,13 @@
 
     <div class="form-group">
       <label for="birthdate">Birthdate</label>
-      <input type="text" class="form-control" id="birthdate"
+      <input type="date" class="form-control" id="birthdate"
              required [(ngModel)]="patient.birthdate" name="birthdate"
              #birthdate="ngModel"
       >
       <div [hidden]="birthdate.valid"
            class="alert alert-danger">
-        Birthdate is required (yyyy-MM-dd)
+        Birthdate is required
       </div>
     </div>
 
