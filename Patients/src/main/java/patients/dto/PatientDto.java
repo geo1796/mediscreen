@@ -3,8 +3,10 @@ package patients.dto;
 import lombok.Getter;
 import lombok.Setter;
 import patients.constraint.ValidBirthdate;
+import patients.constraint.ValidGender;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -15,11 +17,12 @@ public class PatientDto {
     private String lastName;
     @NotBlank(message = "first name is mandatory")
     private String firstName;
-    @NotBlank(message = "gender is mandatory")
+    @ValidGender
     private String sex;
     @NotBlank(message = "address is mandatory")
     private String address;
-    @NotBlank(message = "phone number is mandatory")
+    @NotBlank(message = "Phone number must be 10 digits")
+    @Pattern(regexp="(^$|[0-9]{10})") //only digits are accepted
     private String phoneNumber;
     @ValidBirthdate
     private String birthdate;

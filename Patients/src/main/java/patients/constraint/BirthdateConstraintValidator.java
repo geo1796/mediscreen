@@ -16,7 +16,7 @@ public class BirthdateConstraintValidator implements ConstraintValidator<ValidBi
             return false;
 
         try{
-            return LocalDate.parse(birthdate).isBefore(LocalDate.now());
+            return LocalDate.parse(birthdate).isEqual(LocalDate.now()) || LocalDate.parse(birthdate).isBefore(LocalDate.now());
         }
         catch (DateTimeParseException e) {
             return false;

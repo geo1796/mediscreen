@@ -12,7 +12,6 @@ import patients.dto.PatientDto;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -36,7 +35,7 @@ public class PatientControllerIT {
 
     @Test
     public void testGetAllPatients() throws Exception {
-        mockMvc.perform(get("/patients"))
+        mockMvc.perform(get("/patient"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)));
     }
@@ -58,14 +57,14 @@ public class PatientControllerIT {
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testDeletePatient() throws Exception {
-        mockMvc.perform(get("/patients"))
+        mockMvc.perform(get("/patient"))
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$", hasSize(1)));
 
         mockMvc.perform(delete("/patient/1"))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(get("/patients"))
+        mockMvc.perform(get("/patient"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(0)));
     }
@@ -113,10 +112,11 @@ public class PatientControllerIT {
 
     @Test
     public void testCreateNotValidPatient() throws Exception {
-        mockMvc.perform(post("/patients")
+        mockMvc.perform(post("/patient/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonStream.serialize(new PatientDto())))
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isUnprocessableEntity())
+                .andDo(print());
     }
 
     @Test
@@ -124,7 +124,8 @@ public class PatientControllerIT {
         mockMvc.perform(put("/patient/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(JsonStream.serialize(new PatientDto())))
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isUnprocessableEntity())
+                .andDo(print());
     }
 
 }

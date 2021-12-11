@@ -13,12 +13,14 @@ export class UpdatePatientComponent implements OnInit {
   id: number;
   patient: Patient;
   submitted = false;
-
+  today: string;
 
   constructor(private route: ActivatedRoute,private router: Router,
     private patientService: PatientService) { }
 
   ngOnInit() {
+    this.today = new Date().toISOString().slice(0, 10);
+
     this.patient = new Patient();
 
     this.id = this.route.snapshot.params['id'];

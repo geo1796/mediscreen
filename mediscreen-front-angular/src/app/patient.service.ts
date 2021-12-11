@@ -28,6 +28,6 @@ export class PatientService {
   }
 
   getPatientsList(): Observable<any> {
-    return this.http.get(`http://localhost:8081/patients`);
+    return this.http.get(this.baseUrl);
   }
 }

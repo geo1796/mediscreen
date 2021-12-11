@@ -1,6 +1,7 @@
 package patients.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @DynamicUpdate
 @Getter
 @Setter
+@NoArgsConstructor
 public class Patient {
 
     @Id
@@ -23,8 +25,6 @@ public class Patient {
     private String address;
     private String phoneNumber;
     private LocalDate birthdate;
-
-    public Patient(){}
 
     public Patient(String lastName, String firstName, String sex, String address, String phoneNumber, LocalDate birthdate) {
         this.lastName = lastName;

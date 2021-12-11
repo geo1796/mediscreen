@@ -44,26 +44,27 @@
 
     <div class="form-group">
       <label for="birthdate">Birthdate</label>
-      <input type="date" class="form-control" id="birthdate"
+      <input type="date" max="{{this.today}}" class="form-control" id="birthdate"
              required [(ngModel)]="patient.birthdate" name="birthdate"
              #birthdate="ngModel"
       >
       <div [hidden]="birthdate.valid"
            class="alert alert-danger">
-        Birthdate is required (yyyy-MM-dd)
+        Birthdate is required
       </div>
     </div>
 
     <div class="form-group">
       <label for="phoneNumber">Phone number</label>
-      <input type="text" class="form-control" id="phoneNumber"
+      <input type="tel" class="form-control" id="phoneNumber"
+             pattern="[0-9]{10}"
              required
              [(ngModel)]="patient.phoneNumber" name="phoneNumber"
              #phoneNumber="ngModel"
       >
       <div [hidden]="phoneNumber.valid"
            class="alert alert-danger">
-        Phone number is required
+        Phone number must be 10 digits
       </div>
     </div>
 

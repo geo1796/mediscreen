@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,7 +27,7 @@ public class PatientController {
     private static final Logger logger = LogManager.getLogger(PatientController.class);
     private PatientService patientService;
 
-    @GetMapping("/patients")
+    @GetMapping("/patient")
     public ResponseEntity<List<Patient>> getAllPatients() {
         logger.info("method getAllPatients called");
         return ResponseEntity.ok(patientService.findAll());
@@ -39,7 +38,7 @@ public class PatientController {
         logger.info("method getPatientById called for id = " + id);
         Optional<Patient> optionalPatient = patientService.findById(id);
 
-        if (optionalPatient.isEmpty()){
+        if (optionalPatient.isEmpty()) {
             logger.error("Patient not found for id = " + id);
             throw new ResourceNotFoundException("Patient not found for id = " + id);
         }
@@ -48,7 +47,7 @@ public class PatientController {
     }
 
     @PostMapping("/patient/add")
-    public ResponseEntity<Patient> createPatient(@Valid @RequestBody PatientDto patientDto){
+    public ResponseEntity<Patient> createPatient(@Valid @RequestBody PatientDto patientDto) {
         logger.info("method createPatient called " + patientDto.toString());
 
         return new ResponseEntity<>(patientService.save(patientDto), HttpStatus.CREATED);
@@ -58,14 +57,15 @@ public class PatientController {
     public ResponseEntity<Patient> updatePatient(@Valid @RequestBody PatientDto patientDetails, @PathVariable long id) throws ResourceNotFoundException {
         logger.info("method updatePatient called [ id = " + id +
                 " ; patientDetails = " + patientDetails.toString() + " ]");
+
         Optional<Patient> optionalPatient = patientService.findById(id);
 
-        if (optionalPatient.isEmpty()){
+        if (optionalPatient.isEmpty()) {
             logger.error("Patient not found for id = " + id);
             throw new ResourceNotFoundException("Patient not found for id = " + id);
         }
 
-        return ResponseEntity.ok(patientService.update(patientDetails, optionalPatient.get()));
+        return new ResponseEntity<>(patientService.update(patientDetails, optionalPatient.get()), HttpStatus.OK);
     }
 
     @DeleteMapping("/patient/{id}")
@@ -73,7 +73,7 @@ public class PatientController {
         logger.info("method deletePatient called for id = " + id);
         Optional<Patient> optionalPatient = patientService.findById(id);
 
-        if (optionalPatient.isEmpty()){
+        if (optionalPatient.isEmpty()) {
             throw new ResourceNotFoundException("Patient not found for id = " + id);
         }
 

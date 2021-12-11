@@ -1,4 +1,4 @@
-package patients.exception;
+package notes.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

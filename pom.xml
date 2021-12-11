@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Patients</module>
+        <module>Notes</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>

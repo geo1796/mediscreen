@@ -12,16 +12,14 @@ export class CreatePatientComponent implements OnInit {
 
   patient: Patient = new Patient();
   submitted = false;
+  error = false;
+  today: string;
 
   constructor(private patientService: PatientService,
     private router: Router) { }
 
   ngOnInit() {
-  }
-
-  newEmployee(): void {
-    this.submitted = false;
-    this.patient = new Patient();
+    this.today = new Date().toISOString().slice(0, 10);
   }
 
   save() {
@@ -29,13 +27,18 @@ export class CreatePatientComponent implements OnInit {
     .createPatient(this.patient).subscribe(data => {
       console.log(data)
       this.patient = new Patient();
-      this.gotoList();
     },
-    error => console.log(error));
+    error => {
+      console.log(error)
+      this.error = true;
+      }
+      );
+      if (!this.error){
+        this.submitted = true;
+      }
   }
 
   onSubmit() {
-    this.submitted = true;
     this.save();
   }
 
