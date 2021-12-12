@@ -3,12 +3,13 @@ package notes.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class NoteDto {
 
@@ -20,7 +21,10 @@ public class NoteDto {
     private String patientFirstName;
     @NotBlank(message = "content is mandatory")
     private String content;
-    @NotBlank(message = "date is mandatory")
-    private String date;
 
+
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

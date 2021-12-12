@@ -8,13 +8,15 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
+import { NoteDetailsComponent } from './note-details/note-details.component';
 @NgModule({
   declarations: [
     AppComponent,
     CreatePatientComponent,
     PatientDetailsComponent,
     PatientListComponent,
-    UpdatePatientComponent
+    UpdatePatientComponent,
+    NoteDetailsComponent
   ],
   imports: [
     BrowserModule,

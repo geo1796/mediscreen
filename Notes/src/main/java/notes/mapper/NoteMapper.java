@@ -12,8 +12,7 @@ public class NoteMapper {
     public Note toEntity(NoteDto noteDto) {
         return new Note(
                 noteDto.getPatientId(), noteDto.getPatientLastName(),
-                noteDto.getPatientFirstName(), noteDto.getContent(),
-                LocalDate.parse(noteDto.getDate()));
+                noteDto.getPatientFirstName(), noteDto.getContent());
     }
 
 }
