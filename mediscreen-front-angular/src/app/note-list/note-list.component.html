@@ -1,0 +1,19 @@
+<h3>Notes</h3>
+<div class="panel-body">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Content</th>
+      <th>Creation date</th>
+      <th>Last Update</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let note of notes | async">
+      <td>{{note.content}}</td>
+      <td>{{note.creationDate}}</td>
+      <td>{{note.lastUpdate}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

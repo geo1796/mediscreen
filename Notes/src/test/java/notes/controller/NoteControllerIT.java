@@ -70,11 +70,24 @@ class NoteControllerIT {
     }
 
     @Test
-    public void testGetNote() throws Exception {
+    public void testGetNoteByPatientId() throws Exception {
         mockMvc.perform(get("/patHistory/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].content", is("this is a note about Son Goku")))
                 .andDo(print());
+    }
+
+    @Test
+    public void testGetNoteById() throws Exception {
+        mockMvc.perform(get("/patHistory/note/123"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content", is("this is a note about Son Goku")));
+    }
+
+    @Test
+    public void testGetNotExistingNoteById() throws Exception {
+        mockMvc.perform(get("/patHistory/note/0"))
+                .andExpect(status().isNotFound());
     }
 
     @Test

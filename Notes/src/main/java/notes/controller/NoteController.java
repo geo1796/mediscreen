@@ -5,6 +5,8 @@ import notes.dto.NoteDto;
 import notes.exception.ResourceNotFoundException;
 import notes.model.Note;
 import notes.service.NoteService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class NoteController {
 
+    private static final Logger logger = LogManager.getLogger(NoteController.class);
     private NoteService noteService;
 
     @PostMapping("/patHistory/add")
@@ -32,7 +35,18 @@ public class NoteController {
 
     @GetMapping("/patHistory/{patientId}")
     public ResponseEntity<List<Note>> getNoteByPatientId(@PathVariable long patientId) {
+        logger.info("method getNoteByPatientId called : patientId = " + patientId);
         return new ResponseEntity<>(noteService.findByPatientId(patientId), HttpStatus.OK);
+    }
+
+    @GetMapping("/patHistory/note/{id}")
+    public ResponseEntity<Note> getNoteById(@PathVariable String id) throws ResourceNotFoundException {
+        Optional<Note> optionalNote = noteService.findById(id);
+        if (optionalNote.isEmpty()){
+            throw new ResourceNotFoundException("there is no note with id : " + id);
+        }
+
+        return new ResponseEntity<>(optionalNote.get(), HttpStatus.OK);
     }
 
     @PutMapping("/patHistory/{id}")

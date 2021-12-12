@@ -1,3 +1,32 @@
+import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from "rxjs";
+import { NoteService } from "../note.service";
+import { Note } from "../note";
+
+@Component({
+  selector: 'app-note-list',
+  templateUrl: './note-list.component.html',
+  styleUrls: ['./note-list.component.css']
+})
+export class NoteListComponent implements OnInit {
+  patientId: number;
+  notes: Observable<Note[]>;
+
+  constructor(private noteService: NoteService, private router:Router, private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.patientId = this.route.snapshot.params['id'];
+    this.reloadData();
+  }
+
+  reloadData(): void {
+    this.notes = this.noteService.getNoteByPatientId(this.patientId);
+  }
+
+}
+
+/*
 import { PatientDetailsComponent } from '../patient-details/patient-details.component';
 import { Observable } from "rxjs";
 import { PatientService } from "../patient.service";
@@ -42,3 +71,4 @@ import { Router } from '@angular/router';
             this.router.navigate(['update', id]);
           }
  }
+*/
