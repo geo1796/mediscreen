@@ -42,7 +42,7 @@ export class CreatePatientComponent implements OnInit {
     this.save();
   }
 
-  gotoList() {
+  list() {
     this.router.navigate(['/patients']);
   }
 }

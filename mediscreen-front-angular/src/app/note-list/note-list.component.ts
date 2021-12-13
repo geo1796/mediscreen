@@ -26,7 +26,9 @@ export class NoteListComponent implements OnInit {
         console.log(data)
         this.notes = data;
         for(var note of this.notes){
-          note.content = note.content.substring(0, 30);     // so it will display only the first 30 characters of the note.content
+          if(note.content.length > 30){
+          note.content = note.content.substring(0, 30).concat(" [...]"); // so it will display only the first 30 characters of the note.content
+              }
         }
       }, error => console.log(error));
   }
@@ -46,7 +48,11 @@ export class NoteListComponent implements OnInit {
   }
 
   updateNote(id: string){
-   this.router.navigate(['update', id]);
+   this.router.navigate(['updateNote', id]);
+  }
+
+  newNote() {
+    this.router.navigate(['addNote', this.patientId]);
   }
 
 }

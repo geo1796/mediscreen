@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
 import { NoteDetailsComponent } from './note-details/note-details.component';
 import { NoteListComponent } from './note-list/note-list.component';
+import { CreateNoteComponent } from './create-note/create-note.component';
+import { UpdateNoteComponent } from './update-note/update-note.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,9 @@ import { NoteListComponent } from './note-list/note-list.component';
     PatientListComponent,
     UpdatePatientComponent,
     NoteDetailsComponent,
-    NoteListComponent
+    NoteListComponent,
+    CreateNoteComponent,
+    UpdateNoteComponent
   ],
   imports: [
     BrowserModule,

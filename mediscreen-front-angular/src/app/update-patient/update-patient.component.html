@@ -1,5 +1,11 @@
 <h3>Update Patient</h3>
-<div [hidden]="submitted" style="width: 400px;">
+<div [hidden]="!error">
+  <button class="alert alert-danger">Something wrong happened, please try again later</button>
+</div>
+<div [hidden]="!submitted">
+  <button class="alert alert-info">Patient updated successfully</button>
+</div>
+<div [hidden]="submitted || error" style="width: 400px;">
   <form (ngSubmit)="onSubmit()" #patientForm="ngForm">
     <div class="form-group">
       <label for="firstName">First Name</label>
@@ -84,3 +90,8 @@
     <button type="submit" class="btn btn-success" [disabled]="!patientForm.form.valid">Submit</button>
   </form>
 </div>
+
+<br>
+
+<button (click)="gotoList()" class="btn btn-primary">Back to patients list</button>
+

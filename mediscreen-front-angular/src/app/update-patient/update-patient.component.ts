@@ -13,6 +13,7 @@ export class UpdatePatientComponent implements OnInit {
   id: number;
   patient: Patient;
   submitted = false;
+  error = false;
   today: string;
 
   constructor(private route: ActivatedRoute,private router: Router,
@@ -29,7 +30,11 @@ export class UpdatePatientComponent implements OnInit {
       .subscribe(data => {
         console.log(data)
         this.patient = data;
-      }, error => console.log(error));
+      }, error => {
+               console.log(error)
+               this.error = true;
+               }
+               );
   }
 
   updatePatient() {
@@ -37,8 +42,14 @@ export class UpdatePatientComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.patient = new Patient();
-        this.gotoList();
-      }, error => console.log(error));
+      }, error => {
+               console.log(error)
+               this.error = true;
+               }
+               );
+               if (!this.error){
+                 this.submitted = true;
+               }
   }
 
   onSubmit() {

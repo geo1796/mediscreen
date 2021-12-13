@@ -5,11 +5,11 @@
   Something went wrong. Please, try again later.
 </div>
 
-<div [hidden]="!submitted || error">
+<div [hidden]="!submitted">
   <h4>Patient saved successfully</h4>
 </div>
 
-<div [hidden]="submitted" style="width: 400px;">
+<div [hidden]="submitted || error" style="width: 400px;">
 
   <form (ngSubmit)="onSubmit()" #patientForm="ngForm">
     <div class="form-group">
@@ -95,3 +95,8 @@
     <button type="submit" class="btn btn-success" [disabled]="!patientForm.form.valid">Submit</button>
   </form>
 </div>
+
+<br>
+
+<button (click)="list()" class="btn btn-primary">Back to patients List</button>
+

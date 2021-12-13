@@ -54,7 +54,7 @@ public class NoteController {
         return new ResponseEntity<>(optionalNote.get(), HttpStatus.OK);
     }
 
-    @PutMapping("/patHistory/{id}")
+    @PutMapping("/patHistory/note/{id}")
     public ResponseEntity<Note> UpdateNote(@PathVariable String id, @RequestBody @Valid NoteDto noteDetails) throws ResourceNotFoundException {
         logger.info("calling method Update note : id = " + id
             + " ; RequestBody = " + noteDetails.toString());
