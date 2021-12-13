@@ -31,4 +31,6 @@ public class NoteService {
         noteToUpdate.setContent(noteDetails.getContent());
         return save(noteToUpdate);
     }
+
+    public void delete(Note note) { noteRepository.delete(note); }
 }

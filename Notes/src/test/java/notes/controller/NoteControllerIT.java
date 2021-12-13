@@ -33,7 +33,7 @@ class NoteControllerIT {
 
     @BeforeEach
     public void setup() throws IOException {
-        Note note = new Note(1L, "Son", "Goku", "this is a note about Son Goku");
+        Note note = new Note(1L, "this is a note about Son Goku");
         note.setId("123");
         mongoTemplate.insert(note, "note");
     }
@@ -48,8 +48,7 @@ class NoteControllerIT {
         mockMvc.perform(post("/patHistory/add")
                 .contentType(MediaType.APPLICATION_JSON).content(
                         JsonStream.serialize(new NoteDto(
-                                2L, "Son", "Gohan",
-                                "this is a note content"))))
+                                2L,"this is a note content"))))
                 .andExpect(status().isCreated());
     }
 
@@ -93,8 +92,7 @@ class NoteControllerIT {
     @Test
     public void testUpdateNoteOk() throws Exception {
         NoteDto noteDto = new NoteDto(
-                1L, "Son", "Goku",
-                "this is a new note content");
+                1L, "this is a new note content");
 
         mockMvc.perform(put("/patHistory/123")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -109,7 +107,7 @@ class NoteControllerIT {
 
     @Test
     public void testUpdateNotExistingNote() throws Exception {
-        NoteDto noteDto = new NoteDto(1L, "Son", "Goku", "...");
+        NoteDto noteDto = new NoteDto(1L, "...");
         mockMvc.perform(put("/patHistory/0")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(JsonStream.serialize(noteDto)))
@@ -122,5 +120,17 @@ class NoteControllerIT {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(JsonStream.serialize(new NoteDto())))
                 .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void testDeleteNoteOk() throws Exception {
+        mockMvc.perform(delete("/patHistory/note/123"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testDeleteNotExistingNote() throws Exception {
+        mockMvc.perform(delete("/patHistory/note/0"))
+                .andExpect(status().isNotFound());
     }
 }

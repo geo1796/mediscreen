@@ -24,12 +24,6 @@ public class Note {
     @Field(value = "patientId")
     private long patientId;
 
-    @Field(value = "patientLastName")
-    private String patientLastName;
-
-    @Field(value = "patientFirstName")
-    private String patientFirstName;
-
     @Field(value = "content")
     private String content;
 
@@ -39,19 +33,15 @@ public class Note {
     @Field(value = "lastUpdate")
     private LocalDate lastUpdate;
 
-    public Note(long patientId, String patientLastName, String patientFirstName, String content) {
+    public Note(long patientId, String content) {
         this.patientId = patientId;
-        this.patientLastName = patientLastName;
-        this.patientFirstName = patientFirstName;
         this.content = content;
         this.creationDate = LocalDate.now();
         this.lastUpdate = this.creationDate;
     }
 
-    public Note(long patientId, String patientLastName, String patientFirstName, String content, String creationDate) {
+    public Note(long patientId, String content, String creationDate) {
         this.patientId = patientId;
-        this.patientLastName = patientLastName;
-        this.patientFirstName = patientFirstName;
         this.content = content;
         this.creationDate = LocalDate.parse(creationDate);
         this.lastUpdate = LocalDate.now();

@@ -1,5 +1,6 @@
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import { CreatePatientComponent } from './create-patient/create-patient.component';
+import { NoteDetailsComponent } from './note-details/note-details.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PatientListComponent } from './patient-list/patient-list.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'add', component: CreatePatientComponent },
   { path: 'update/:id', component: UpdatePatientComponent },
   { path: 'details/:id', component: PatientDetailsComponent },
+  { path: 'noteDetails/:id', component: NoteDetailsComponent },
 ];
 
 @NgModule({

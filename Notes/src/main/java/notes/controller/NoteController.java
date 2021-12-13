@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -25,11 +27,13 @@ public class NoteController {
 
     @PostMapping("/patHistory/add")
     public ResponseEntity<Note> addNote(@RequestBody @Valid NoteDto noteDto) {
+        logger.info("calling method add Note : RequestBody = " + noteDto.toString());
         return new ResponseEntity<>(noteService.save(noteDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/patHistory")
     public ResponseEntity<List<Note>> getAllNotes() {
+        logger.info("calling method getAllNotes");
         return new ResponseEntity<>(noteService.findAll(), HttpStatus.OK);
     }
 
@@ -41,6 +45,7 @@ public class NoteController {
 
     @GetMapping("/patHistory/note/{id}")
     public ResponseEntity<Note> getNoteById(@PathVariable String id) throws ResourceNotFoundException {
+        logger.info("calling method getNoteById with id = " + id);
         Optional<Note> optionalNote = noteService.findById(id);
         if (optionalNote.isEmpty()){
             throw new ResourceNotFoundException("there is no note with id : " + id);
@@ -51,12 +56,29 @@ public class NoteController {
 
     @PutMapping("/patHistory/{id}")
     public ResponseEntity<Note> UpdateNote(@PathVariable String id, @RequestBody @Valid NoteDto noteDetails) throws ResourceNotFoundException {
+        logger.info("calling method Update note : id = " + id
+            + " ; RequestBody = " + noteDetails.toString());
         Optional<Note> optionalNote = noteService.findById(id);
         if (optionalNote.isEmpty()){
             throw new ResourceNotFoundException("no note with id : " + id);
         }
 
         return new ResponseEntity<>(noteService.update(optionalNote.get(), noteDetails), HttpStatus.OK);
+    }
+
+    @DeleteMapping("patHistory/note/{id}")
+    public Map<String, Boolean> deleteNote(@PathVariable String id) throws ResourceNotFoundException {
+        logger.info("method deleteNote called for id = " + id);
+        Optional<Note> optionalNote = noteService.findById(id);
+
+        if (optionalNote.isEmpty()) {
+            throw new ResourceNotFoundException("Patient not found for id = " + id);
+        }
+
+        noteService.delete(optionalNote.get());
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 
 }

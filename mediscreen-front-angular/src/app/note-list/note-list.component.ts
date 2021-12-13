@@ -11,7 +11,7 @@ import { Note } from "../note";
 })
 export class NoteListComponent implements OnInit {
   patientId: number;
-  notes: Observable<Note[]>;
+  notes: Note[];
 
   constructor(private noteService: NoteService, private router:Router, private route: ActivatedRoute) { }
 
@@ -21,54 +21,32 @@ export class NoteListComponent implements OnInit {
   }
 
   reloadData(): void {
-    this.notes = this.noteService.getNoteByPatientId(this.patientId);
+    this.noteService.getNoteByPatientId(this.patientId)
+      .subscribe(data => {
+        console.log(data)
+        this.notes = data;
+        for(var note of this.notes){
+          note.content = note.content.substring(0, 30);     // so it will display only the first 30 characters of the note.content
+        }
+      }, error => console.log(error));
+  }
+
+  deleteNote(id: string) {
+       this.noteService.deleteNote(id)
+         .subscribe(
+           data => {
+             console.log(data);
+             this.reloadData();
+           },
+           error => console.log(error));
+     }
+
+  noteDetails(id: string){
+    this.router.navigate(['noteDetails', id]);
+  }
+
+  updateNote(id: string){
+   this.router.navigate(['update', id]);
   }
 
 }
-
-/*
-import { PatientDetailsComponent } from '../patient-details/patient-details.component';
-import { Observable } from "rxjs";
-import { PatientService } from "../patient.service";
-import { Patient } from "../patient";
-import { Component, OnInit } from "@angular/core";
-import { Router } from '@angular/router';
-
- @Component({
-   selector: "app-patient-list",
-   templateUrl: "./patient-list.component.html",
-   styleUrls: ["./patient-list.component.css"]
- })
- export class PatientListComponent implements OnInit {
-   patients: Observable<Patient[]>;
-
-   constructor(private patientService: PatientService,
-     private router: Router) {}
-
-   ngOnInit() {
-     this.reloadData();
-   }
-
-   reloadData() {
-     this.patients = this.patientService.getPatientsList();
-   }
-
-   deletePatient(id: number) {
-     this.patientService.deletePatient(id)
-       .subscribe(
-         data => {
-           console.log(data);
-           this.reloadData();
-         },
-         error => console.log(error));
-   }
-
-   patientDetails(id: number){
-     this.router.navigate(['details', id]);
-   }
-
-   updatePatient(id: number){
-            this.router.navigate(['update', id]);
-          }
- }
-*/

@@ -39,6 +39,6 @@ import { Router } from '@angular/router';
    }
 
    updatePatient(id: number){
-            this.router.navigate(['update', id]);
-          }
+     this.router.navigate(['update', id]);
+   }
  }
