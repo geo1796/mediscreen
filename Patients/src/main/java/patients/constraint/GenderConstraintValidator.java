@@ -10,6 +10,9 @@ public class GenderConstraintValidator implements ConstraintValidator<ValidGende
 
     @Override
     public boolean isValid(String gender, ConstraintValidatorContext constraintValidatorContext) {
+        if(gender == null){
+            return false;
+        }
         return gender.equals("M") || gender.equals("F");
     }
 }

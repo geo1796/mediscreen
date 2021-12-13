@@ -1,7 +1,6 @@
 package notes.controller;
 
 import com.jsoniter.output.JsonStream;
-import notes.dto.NoteDto;
 import notes.model.Note;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ class NoteControllerIT {
     public void testAddNoteOk() throws Exception {
         mockMvc.perform(post("/patHistory/add")
                 .contentType(MediaType.APPLICATION_JSON).content(
-                        JsonStream.serialize(new NoteDto(
+                        JsonStream.serialize(new Note(
                                 2L,"this is a note content"))))
                 .andExpect(status().isCreated());
     }
@@ -56,7 +55,7 @@ class NoteControllerIT {
     public void testAddNotValidNote() throws Exception {
         mockMvc.perform(post("/patHistory/add")
                 .contentType(MediaType.APPLICATION_JSON).content(
-                        JsonStream.serialize(new NoteDto())))
+                        JsonStream.serialize(new Note())))
                 .andExpect(status().isUnprocessableEntity());
     }
 
@@ -91,12 +90,12 @@ class NoteControllerIT {
 
     @Test
     public void testUpdateNoteOk() throws Exception {
-        NoteDto noteDto = new NoteDto(
+        Note note = new Note(
                 1L, "this is a new note content");
 
         mockMvc.perform(put("/patHistory/note/123")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonStream.serialize(noteDto)))
+                .content(JsonStream.serialize(note)))
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/patHistory/1"))
@@ -107,10 +106,10 @@ class NoteControllerIT {
 
     @Test
     public void testUpdateNotExistingNote() throws Exception {
-        NoteDto noteDto = new NoteDto(1L, "...");
+        Note note = new Note(1L, "...");
         mockMvc.perform(put("/patHistory/note/0")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonStream.serialize(noteDto)))
+                        .content(JsonStream.serialize(note)))
                 .andExpect(status().isNotFound());
     }
 
@@ -118,7 +117,7 @@ class NoteControllerIT {
     public void testUpdateInvalidNote() throws Exception {
         mockMvc.perform(put("/patHistory/note/123")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonStream.serialize(new NoteDto())))
+                        .content(JsonStream.serialize(new Note())))
                 .andExpect(status().isUnprocessableEntity());
     }
 

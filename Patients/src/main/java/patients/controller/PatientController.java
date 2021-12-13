@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import patients.dto.PatientDto;
 import patients.exception.ResourceNotFoundException;
 import patients.model.Patient;
 import patients.service.PatientService;
@@ -47,14 +46,14 @@ public class PatientController {
     }
 
     @PostMapping("/patient/add")
-    public ResponseEntity<Patient> createPatient(@Valid @RequestBody PatientDto patientDto) {
-        logger.info("method createPatient called " + patientDto.toString());
+    public ResponseEntity<Patient> createPatient(@Valid @RequestBody Patient patient) {
+        logger.info("method createPatient called " + patient.toString());
 
-        return new ResponseEntity<>(patientService.save(patientDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(patientService.save(patient), HttpStatus.CREATED);
     }
 
     @PutMapping("/patient/{id}")
-    public ResponseEntity<Patient> updatePatient(@Valid @RequestBody PatientDto patientDetails, @PathVariable long id) throws ResourceNotFoundException {
+    public ResponseEntity<Patient> updatePatient(@Valid @RequestBody Patient patientDetails, @PathVariable long id) throws ResourceNotFoundException {
         logger.info("method updatePatient called [ id = " + id +
                 " ; patientDetails = " + patientDetails.toString() + " ]");
 

@@ -6,11 +6,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import patients.controller.PatientController;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
+
 @SpringBootApplication()
 @AllArgsConstructor
 public class App implements CommandLineRunner {
 
-    private PatientController patientController;
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);

@@ -1,12 +1,15 @@
 package notes.service;
 
 import lombok.AllArgsConstructor;
-import notes.dto.NoteDto;
-import notes.mapper.NoteMapper;
+
 import notes.model.Note;
 import notes.repository.NoteRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,20 +18,30 @@ import java.util.Optional;
 public class NoteService {
 
     private NoteRepository noteRepository;
-    private NoteMapper noteMapper;
 
-    public Note save(Note note) { return noteRepository.save(note); }
+    public Note save(Note note) {
+        if(note.getCreationDate() == null){
+            note.setCreationDate(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT)));
+        }
+        return noteRepository.save(note); }
 
-    public Note save(NoteDto noteDto) { return save(noteMapper.toEntity(noteDto)); }
+    public List<Note> findAll() {
+        List<Note> allNotes = noteRepository.findAll();
+        Collections.sort(allNotes);
+        return allNotes;
+    }
 
-    public List<Note> findAll() { return noteRepository.findAll(); }
-
-    public List<Note> findByPatientId(long patientId) { return noteRepository.findByPatientId(patientId); }
+    public List<Note> findByPatientId(long patientId) {
+        List<Note> notesByPatientId = noteRepository.findByPatientId(patientId);
+        Collections.sort(notesByPatientId);
+        return notesByPatientId;
+    }
 
     public Optional<Note> findById(String id) { return noteRepository.findById(id); }
 
-    public Note update(Note noteToUpdate, NoteDto noteDetails) {
+    public Note update(Note noteToUpdate, Note noteDetails) {
         noteToUpdate.setContent(noteDetails.getContent());
+        noteToUpdate.setLastUpdate(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT)));
         return save(noteToUpdate);
     }
 

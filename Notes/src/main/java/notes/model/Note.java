@@ -9,41 +9,63 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Document(collection = "note")
-public class Note {
+public class Note implements Comparable<Note>{
 
     @Id
     private String id;
 
     @Field(value = "patientId")
+    @NotNull(message = "patientId is mandatory")
     private long patientId;
 
     @Field(value = "content")
+    @NotBlank(message = "content is mandatory")
     private String content;
 
     @Field(value = "creationDate")
-    private LocalDate creationDate;
+    private String creationDate;
 
     @Field(value = "lastUpdate")
-    private LocalDate lastUpdate;
+    private String lastUpdate;
 
     public Note(long patientId, String content) {
         this.patientId = patientId;
         this.content = content;
-        this.creationDate = LocalDate.now();
-        this.lastUpdate = this.creationDate;
     }
 
-    public Note(long patientId, String content, String creationDate) {
-        this.patientId = patientId;
-        this.content = content;
-        this.creationDate = LocalDate.parse(creationDate);
-        this.lastUpdate = LocalDate.now();
+    @Override
+    public String toString(){
+        return "Note object : [id = " + id
+                + " ; content = " + content
+                + " ; creationDate = " + creationDate
+                + " ; lastUpdate = " + lastUpdate + "]";
+    }
+
+    @Override
+    public int compareTo(Note otherNote) {
+        LocalDateTime thisDateTime = LocalDateTime.parse(
+                this.creationDate,
+                DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT));
+        LocalDateTime otherDateTime = LocalDateTime.parse(
+                otherNote.getCreationDate(),
+                DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT));
+        if(thisDateTime.isBefore(otherDateTime)){
+            return 1;
+        }
+        else if(otherDateTime.isBefore(thisDateTime)){
+            return -1;
+        }
+        return 0;
     }
 }

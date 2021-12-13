@@ -8,7 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import patients.dto.PatientDto;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -17,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.jsoniter.output.JsonStream;
+import patients.model.Patient;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -44,7 +44,7 @@ public class PatientControllerIT {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void testCreatePatient() throws Exception {
         mockMvc.perform(post("/patient/add")
-                .contentType(MediaType.APPLICATION_JSON).content(JsonStream.serialize(new PatientDto("Prince", "Vegeta", "M",
+                .contentType(MediaType.APPLICATION_JSON).content(JsonStream.serialize(new Patient("Prince", "Vegeta", "M",
                         "CapsuleCorp", "0123456789", "1975-01-01"))))
                 .andExpect(status().isCreated());
 
@@ -76,11 +76,11 @@ public class PatientControllerIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is("Goku")));
 
-        PatientDto patientDto = new PatientDto(
+        Patient patient = new Patient(
                 "Prince", "Vegeta", "M",
                 "CapsuleCorp", "0123456789", "1975-01-01");
         mockMvc.perform(put("/patient/1")
-                .contentType(MediaType.APPLICATION_JSON).content(JsonStream.serialize(patientDto)))
+                .contentType(MediaType.APPLICATION_JSON).content(JsonStream.serialize(patient)))
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/patient/1"))
@@ -98,7 +98,7 @@ public class PatientControllerIT {
     public void testUpdateNotExistingPatient() throws Exception {
         mockMvc.perform(put("/patient/99999")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonStream.serialize(new PatientDto(
+                        .content(JsonStream.serialize(new Patient(
                                 "Son", "Gohan", "M", "Namek",
                                 "9999999999", "2000-01-01"))))
                 .andExpect(status().isNotFound());
@@ -114,7 +114,7 @@ public class PatientControllerIT {
     public void testCreateNotValidPatient() throws Exception {
         mockMvc.perform(post("/patient/add")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonStream.serialize(new PatientDto())))
+                .content(JsonStream.serialize(new Patient())))
                 .andExpect(status().isUnprocessableEntity())
                 .andDo(print());
     }
@@ -123,7 +123,7 @@ public class PatientControllerIT {
     public void testUpdateNotValidPatient() throws Exception {
         mockMvc.perform(put("/patient/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonStream.serialize(new PatientDto())))
+                        .content(JsonStream.serialize(new Patient())))
                 .andExpect(status().isUnprocessableEntity())
                 .andDo(print());
     }

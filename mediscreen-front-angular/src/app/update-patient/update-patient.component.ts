@@ -42,14 +42,13 @@ export class UpdatePatientComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.patient = new Patient();
+        this.submitted = true;
       }, error => {
-               console.log(error)
-               this.error = true;
-               }
-               );
-               if (!this.error){
-                 this.submitted = true;
-               }
+       console.log(error)
+       this.error = true;
+       this.submitted = false;
+       }
+       );
   }
 
   onSubmit() {

@@ -1,7 +1,6 @@
 package notes.controller;
 
 import lombok.AllArgsConstructor;
-import notes.dto.NoteDto;
 import notes.exception.ResourceNotFoundException;
 import notes.model.Note;
 import notes.service.NoteService;
@@ -26,9 +25,9 @@ public class NoteController {
     private NoteService noteService;
 
     @PostMapping("/patHistory/add")
-    public ResponseEntity<Note> addNote(@RequestBody @Valid NoteDto noteDto) {
-        logger.info("calling method add Note : RequestBody = " + noteDto.toString());
-        return new ResponseEntity<>(noteService.save(noteDto), HttpStatus.CREATED);
+    public ResponseEntity<Note> addNote(@RequestBody @Valid Note note) {
+        logger.info("calling method add Note : RequestBody = " + note.toString());
+        return new ResponseEntity<>(noteService.save(note), HttpStatus.CREATED);
     }
 
     @GetMapping("/patHistory")
@@ -55,7 +54,7 @@ public class NoteController {
     }
 
     @PutMapping("/patHistory/note/{id}")
-    public ResponseEntity<Note> UpdateNote(@PathVariable String id, @RequestBody @Valid NoteDto noteDetails) throws ResourceNotFoundException {
+    public ResponseEntity<Note> UpdateNote(@PathVariable String id, @RequestBody @Valid Note noteDetails) throws ResourceNotFoundException {
         logger.info("calling method Update note : id = " + id
             + " ; RequestBody = " + noteDetails.toString());
         Optional<Note> optionalNote = noteService.findById(id);

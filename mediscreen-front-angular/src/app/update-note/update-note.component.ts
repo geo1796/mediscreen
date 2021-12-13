@@ -11,6 +11,7 @@ import { NoteService } from '../note.service';
 export class UpdateNoteComponent implements OnInit {
   id: string;
   note: Note;
+  patientId : number;
   submitted = false;
   error = false;
 
@@ -25,6 +26,7 @@ export class UpdateNoteComponent implements OnInit {
         .subscribe(data => {
           console.log(data)
           this.note = data;
+          this.patientId = this.note.patientId;
         }, error => {
         console.log(error)
         this.error = true;
@@ -37,14 +39,13 @@ export class UpdateNoteComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.note = new Note();
+        this.submitted = true;
       }, error => {
          console.log(error)
          this.error = true;
+         this.submitted = false;
          }
          );
-         if(!this.error){
-          this.submitted = true;
-         }
   }
 
   onSubmit() {
@@ -52,7 +53,7 @@ export class UpdateNoteComponent implements OnInit {
   }
 
   patientDetails() {
-    this.router.navigate(['/details', this.note.patientId]);
+    this.router.navigate(['/details', this.patientId]);
   }
 
 }

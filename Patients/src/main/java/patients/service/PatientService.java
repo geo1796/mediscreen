@@ -2,8 +2,6 @@ package patients.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import patients.dto.PatientDto;
-import patients.mapper.PatientMapper;
 import patients.model.Patient;
 import patients.repository.PatientRepository;
 
@@ -15,11 +13,10 @@ import java.util.Optional;
 public class PatientService {
 
     private PatientRepository patientRepository;
-    private PatientMapper patientMapper;
 
-    public Patient save(Patient patient) { return patientRepository.save(patient); }
-
-    public Patient save(PatientDto patientDto) { return save(patientMapper.toEntity(patientDto)); }
+    public Patient save(Patient patient) {
+        return patientRepository.save(patient);
+    }
 
     public List<Patient> findAll() { return patientRepository.findAll(); }
 
@@ -34,10 +31,6 @@ public class PatientService {
         patientToUpdate.setPhoneNumber(patientDetails.getPhoneNumber());
 
         return patientRepository.save(patientToUpdate);
-    }
-
-    public Patient update(PatientDto patientDetails, Patient patientToUpdate) {
-        return update(patientMapper.toEntity(patientDetails), patientToUpdate);
     }
 
     public void delete(Patient patient) { patientRepository.delete(patient); }

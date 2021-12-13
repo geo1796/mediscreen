@@ -27,15 +27,14 @@ export class CreatePatientComponent implements OnInit {
     .createPatient(this.patient).subscribe(data => {
       console.log(data)
       this.patient = new Patient();
+      this.submitted = true;
     },
     error => {
       console.log(error)
       this.error = true;
+      this.submitted = false;
       }
       );
-      if (!this.error){
-        this.submitted = true;
-      }
   }
 
   onSubmit() {

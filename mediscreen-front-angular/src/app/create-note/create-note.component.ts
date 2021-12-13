@@ -29,15 +29,14 @@ export class CreateNoteComponent implements OnInit {
     this.noteService.createNote(this.note).subscribe(data => {
       console.log(data)
       this.newNote();
+      this.submitted = true;
     },
     error => {
       console.log(error)
       this.error = true;
+      this.submitted = false;
     }
     );
-    if (!this.error){
-      this.submitted = true;
-    }
   }
 
   onSubmit() {
