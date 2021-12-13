@@ -1,0 +1,34 @@
+<div [hidden]="!submitted">
+  <button class="alert alert-info">Note saved successfully</button>
+</div>
+
+<div [hidden]="!error">
+  <button class="alert alert-danger">Something wrong happened, please try again later</button>
+</div>
+
+<div [hidden]="submitted || error" style="width: 400px;">
+
+  <form (ngSubmit)="onSubmit()" #noteForm="ngForm">
+
+    <div class="form-group">
+      <label for="content">Note content</label>
+      <textarea type="text" rows="15" cols="100" class="form-control" id="content"
+             required
+             [(ngModel)]="note.content" name="content"
+             #content="ngModel"
+      ></textarea>
+      <div [hidden]="content.valid"
+           class="alert alert-danger">
+        Note content is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!noteForm.form.valid">Submit</button>
+  </form>
+
+</div>
+
+<br>
+
+<button (click)="patientDetails()" class="btn btn-primary">Back to patient details</button>
+
