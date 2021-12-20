@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -25,9 +27,17 @@ public class PatientControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    private PatientController patientController;
 
     @Test
-    public void testGetPatient() throws Exception {
+    public void testGetPatientWithControllerInstance() throws Exception {
+        assertTrue(patientController.getPatientById(1).getStatusCode().is2xxSuccessful());
+        assertEquals(patientController.getPatientById(1).getBody().getFirstName(), "Goku");
+    }
+
+    @Test
+    public void testGetPatientById() throws Exception {
         mockMvc.perform(get("/patient/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is("Goku")));
