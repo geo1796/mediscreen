@@ -1,11 +1,12 @@
-package Report.assessing;
+package report.assessing;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+
+import static report.util.StringNormalizer.normalize;
 
 public class ReadTriggersFromFile {
 
@@ -28,10 +29,7 @@ public class ReadTriggersFromFile {
 
                 while (line != null) {
                     //result.add(line.toUpperCase());
-                    result.add(
-                            Normalizer.normalize(line, Normalizer.Form.NFD) // to get rid
-                                    .replaceAll("\\p{M}", "") // of accented characters
-                                    .toUpperCase());
+                    result.add(normalize(line));
                     line = reader.readLine();
                 }
                 reader.close();

@@ -1,4 +1,4 @@
-package Report.assessing;
+package report.assessing;
 
 public class Assessments {
 

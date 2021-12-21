@@ -1,4 +1,4 @@
-package Report.model;
+package report.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class Report {
     @Override
     public String toString() {
         return "Patient : [ age = " + patientAge
-                + "; sex = " + patientSex + " ] "
+                + " , sex = " + patientSex + " ] "
                 + " diabetes assessment is " + assessment;
     }
 
