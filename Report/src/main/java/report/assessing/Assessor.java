@@ -33,7 +33,7 @@ public class Assessor {
                 Objects.equals(patientInformation.getPatientSex(), "F")
                         && patientInformation.getPatientAge() < 30
                         && numberOfTriggerInNotes >= 7)
-        { // patient is a woman less than 30 and has 4 or more triggers
+        { // patient is a woman less than 30 and has 7 or more triggers
             return Assessments.EARLY_ONSET;
         }
 
@@ -70,12 +70,10 @@ public class Assessor {
             return Assessments.BORDERLINE;
         }
 
-        else if (numberOfTriggerInNotes == 0)
+        else
         {
             return Assessments.NONE;
         }
-
-        return ""; // ?
     }
 
     private void obtainTriggers() {
