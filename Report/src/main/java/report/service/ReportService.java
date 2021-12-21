@@ -1,5 +1,6 @@
 package report.service;
 
+import feign.FeignException;
 import org.springframework.stereotype.Service;
 import report.assessing.Assessor;
 import report.client.NoteClient;
@@ -11,7 +12,6 @@ import notes.model.Note;
 import patients.model.Patient;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,11 +25,11 @@ public class ReportService {
         return assessor.generateReport();
     }
 
-    public Optional<Patient> getPatientById(long patientId) {
-        return Optional.ofNullable(patientClient.getPatientById(patientId));
+    public Patient getPatientById(long patientId) throws FeignException.NotFound {
+        return patientClient.getPatientById(patientId);
     }
 
-    public Optional<List<Note>> getNoteByPatientId(long patientId) {
-        return Optional.ofNullable(noteClient.getNoteByPatientId(patientId));
+    public List<Note> getNoteByPatientId(long patientId) {
+        return noteClient.getNoteByPatientId(patientId);
     }
 }

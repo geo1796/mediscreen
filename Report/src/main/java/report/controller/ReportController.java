@@ -1,8 +1,9 @@
 package report.controller;
 
+import feign.FeignException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.http.HttpStatus;
+import report.exception.ResourceNotFoundException;
 import report.model.Report;
 import report.service.ReportService;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import patients.model.Patient;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -24,21 +24,18 @@ public class ReportController {
     private ReportService reportService;
 
     @GetMapping("/assess/{patientId}")
-    public ResponseEntity<Report> getReport(@PathVariable("patientId") long patientId) {
+    public ResponseEntity<Report> getReport(@PathVariable("patientId") long patientId) throws ResourceNotFoundException {
         logger.info("calling method getReport : patientId = " + patientId);
-        Optional<Patient> optionalPatient = reportService.getPatientById(patientId);
+        try {
+            Patient patient = reportService.getPatientById(patientId);
+            List<Note> notes = reportService.getNoteByPatientId(patientId);
 
-        if (optionalPatient.isEmpty()) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return ResponseEntity.ok(reportService.getReport(patient, notes));
         }
-
-        Optional<List<Note>> optionalNotes = reportService.getNoteByPatientId(patientId);
-
-        if (optionalNotes.isEmpty()){
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        catch (FeignException.NotFound e){ // if there is no patient for this ID
+            logger.error(e.getMessage());
+            throw new ResourceNotFoundException(e.getMessage());
         }
-
-        return ResponseEntity.ok(reportService.getReport(optionalPatient.get(), optionalNotes.get()));
     }
 
 }
