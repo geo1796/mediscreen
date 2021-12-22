@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 import report.assessing.Assessor;
 import report.client.NoteClient;
 import report.client.PatientClient;
+import report.model.Note;
+import report.model.Patient;
 import report.model.PatientInformation;
 import report.model.Report;
 import lombok.AllArgsConstructor;
-import notes.model.Note;
-import patients.model.Patient;
 
 import java.util.List;
 

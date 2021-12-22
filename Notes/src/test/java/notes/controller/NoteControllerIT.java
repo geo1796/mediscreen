@@ -56,7 +56,7 @@ class NoteControllerIT {
         mockMvc.perform(post("/patHistory/add")
                 .contentType(MediaType.APPLICATION_JSON).content(
                         JsonStream.serialize(new Note())))
-                .andExpect(status().isUnprocessableEntity());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -118,7 +118,7 @@ class NoteControllerIT {
         mockMvc.perform(put("/patHistory/note/123")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(JsonStream.serialize(new Note())))
-                .andExpect(status().isUnprocessableEntity());
+                .andExpect(status().isBadRequest());
     }
 
     @Test

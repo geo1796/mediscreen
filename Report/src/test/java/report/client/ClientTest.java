@@ -1,10 +1,10 @@
 package report.client;
 
-import notes.model.Note;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import patients.model.Patient;
+import report.model.Note;
+import report.model.Patient;
 
 import java.util.List;
 

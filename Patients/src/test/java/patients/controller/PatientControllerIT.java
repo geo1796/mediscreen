@@ -27,14 +27,6 @@ public class PatientControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private PatientController patientController;
-
-    @Test
-    public void testGetPatientWithControllerInstance() throws Exception {
-        assertTrue(patientController.getPatientById(1).getStatusCode().is2xxSuccessful());
-        assertEquals(patientController.getPatientById(1).getBody().getFirstName(), "Goku");
-    }
 
     @Test
     public void testGetPatientById() throws Exception {
@@ -55,7 +47,7 @@ public class PatientControllerIT {
     public void testCreatePatient() throws Exception {
         mockMvc.perform(post("/patient/add")
                 .contentType(MediaType.APPLICATION_JSON).content(JsonStream.serialize(new Patient("Prince", "Vegeta", "M",
-                        "CapsuleCorp", "0123456789", "1975-01-01"))))
+                        "CapsuleCorp", "012-345-6789", "1975-01-01"))))
                 .andExpect(status().isCreated());
 
         mockMvc.perform(get("/patient/2"))
@@ -88,7 +80,7 @@ public class PatientControllerIT {
 
         Patient patient = new Patient(
                 "Prince", "Vegeta", "M",
-                "CapsuleCorp", "0123456789", "1975-01-01");
+                "CapsuleCorp", "012-345-6789", "1975-01-01");
         mockMvc.perform(put("/patient/1")
                 .contentType(MediaType.APPLICATION_JSON).content(JsonStream.serialize(patient)))
                 .andExpect(status().isOk());
@@ -110,7 +102,7 @@ public class PatientControllerIT {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(JsonStream.serialize(new Patient(
                                 "Son", "Gohan", "M", "Namek",
-                                "9999999999", "2000-01-01"))))
+                                "999-999-9999", "2000-01-01"))))
                 .andExpect(status().isNotFound());
     }
 
@@ -125,7 +117,7 @@ public class PatientControllerIT {
         mockMvc.perform(post("/patient/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonStream.serialize(new Patient())))
-                .andExpect(status().isUnprocessableEntity())
+                .andExpect(status().isBadRequest())
                 .andDo(print());
     }
 
@@ -134,7 +126,7 @@ public class PatientControllerIT {
         mockMvc.perform(put("/patient/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(JsonStream.serialize(new Patient())))
-                .andExpect(status().isUnprocessableEntity())
+                .andExpect(status().isBadRequest())
                 .andDo(print());
     }
 

@@ -2,8 +2,6 @@ package report.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import notes.model.Note;
-import patients.model.Patient;
 
 import java.time.LocalDate;
 import java.time.Period;

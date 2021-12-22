@@ -4,15 +4,15 @@ import feign.FeignException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import report.exception.ResourceNotFoundException;
+import report.model.Note;
+import report.model.Patient;
 import report.model.Report;
 import report.service.ReportService;
 import lombok.AllArgsConstructor;
-import notes.model.Note;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import patients.model.Patient;
 
 import java.util.List;
 
