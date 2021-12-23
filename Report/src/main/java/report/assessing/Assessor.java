@@ -12,9 +12,18 @@ import static report.util.StringNormalizer.normalize;
 public class Assessor {
 
     private List<String> triggers;
-    private final PatientInformation patientInformation;
+    private PatientInformation patientInformation;
+    private String filepath = "Report/src/main/resources/triggers";
 
-    public Assessor(PatientInformation patientInformation){ this.patientInformation = patientInformation; }
+    public Assessor(){}
+
+    public Assessor(String filepath){
+        this.filepath = filepath;
+    }
+
+    public void setPatientInformation(PatientInformation patientInformation) {
+        this.patientInformation = patientInformation;
+    }
 
     public Report generateReport(){
         return new Report(obtainAssessment(), patientInformation.getPatientAge(), patientInformation.getPatientSex());
@@ -77,7 +86,7 @@ public class Assessor {
     }
 
     private void obtainTriggers() {
-        ReadTriggersFromFile readTriggersFromFile = new ReadTriggersFromFile("Report/src/main/resources/triggers");
+        ReadTriggersFromFile readTriggersFromFile = new ReadTriggersFromFile(filepath);
         this.triggers = readTriggersFromFile.getTriggers();
     }
 
