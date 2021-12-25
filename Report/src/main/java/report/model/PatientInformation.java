@@ -16,6 +16,8 @@ public class PatientInformation {
     private List<String> notes;
     private String patientSex;
 
+    public PatientInformation(){}
+
     public PatientInformation(Patient patient, List<Note> notes) {
         this.patientSex = patient.getSex();
         calculateAge(patient.getBirthdate());

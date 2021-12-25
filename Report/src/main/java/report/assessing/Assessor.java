@@ -1,5 +1,6 @@
 package report.assessing;
 
+import lombok.Getter;
 import report.model.PatientInformation;
 import report.model.Report;
 
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 import static report.util.StringNormalizer.normalize;
 
+@Getter
 public class Assessor {
 
     private List<String> triggers;
@@ -29,7 +31,7 @@ public class Assessor {
         return new Report(obtainAssessment(), patientInformation.getPatientAge(), patientInformation.getPatientSex());
     }
 
-    private String obtainAssessment() {
+    protected String obtainAssessment() {
         obtainTriggers();
         int numberOfTriggerInNotes = obtainNumberOfTriggerFromNotes(patientInformation.getNotes());
 
@@ -40,7 +42,7 @@ public class Assessor {
 
         else if (
                 Objects.equals(patientInformation.getPatientSex(), "F")
-                        && patientInformation.getPatientAge() < 30
+                        && patientInformation.getPatientAge() <= 30
                         && numberOfTriggerInNotes >= 7)
         { // patient is a woman less than 30 and has 7 or more triggers
             return Assessments.EARLY_ONSET;
@@ -48,7 +50,7 @@ public class Assessor {
 
         else if (
                 Objects.equals(patientInformation.getPatientSex(), "M")
-                        && patientInformation.getPatientAge() < 30
+                        && patientInformation.getPatientAge() <= 30
                         && numberOfTriggerInNotes >= 5)
         { // patient is a man less than 30 and has 5 or more triggers
             return Assessments.EARLY_ONSET;
@@ -56,14 +58,14 @@ public class Assessor {
 
         else if (
                 Objects.equals(patientInformation.getPatientSex(), "M")
-                        && patientInformation.getPatientAge() < 30
+                        && patientInformation.getPatientAge() <= 30
                         && numberOfTriggerInNotes >= 3)
         { // patient is a man less than 30 and has 3 or more triggers
             return Assessments.IN_DANGER;
         }
         else if (
                 Objects.equals(patientInformation.getPatientSex(), "F")
-                        && patientInformation.getPatientAge() < 30
+                        && patientInformation.getPatientAge() <= 30
                         && numberOfTriggerInNotes >= 4)
         { // patient is a woman less than 30 and has 4 or more triggers
             return Assessments.IN_DANGER;
@@ -85,12 +87,12 @@ public class Assessor {
         }
     }
 
-    private void obtainTriggers() {
+    protected void obtainTriggers() {
         ReadTriggersFromFile readTriggersFromFile = new ReadTriggersFromFile(filepath);
         this.triggers = readTriggersFromFile.getTriggers();
     }
 
-    private int obtainNumberOfTriggerFromNotes(List<String> notes){
+    protected int obtainNumberOfTriggerFromNotes(List<String> notes){
         List<String> triggerFound = new ArrayList<>();
 
         for (String trigger: this.triggers){
@@ -99,7 +101,6 @@ public class Assessor {
                 if (normalizedNote.contains(trigger) && !triggerFound.contains(trigger)){
                     triggerFound.add(trigger);
                 }
-
             }
         }
 
