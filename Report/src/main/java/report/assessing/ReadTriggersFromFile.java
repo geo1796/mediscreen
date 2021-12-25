@@ -3,6 +3,8 @@ package report.assessing;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class ReadTriggersFromFile {
         {
             try
             {
-                BufferedReader reader = new BufferedReader (new FileReader(filepath));
+                BufferedReader reader = new BufferedReader (new FileReader(filepath, StandardCharsets.UTF_8));
                 String line = reader.readLine();
 
                 while (line != null) {

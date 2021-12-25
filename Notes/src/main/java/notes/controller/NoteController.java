@@ -54,7 +54,7 @@ public class NoteController {
     }
 
     @PutMapping("/patHistory/note/{id}")
-    public ResponseEntity<Note> UpdateNote(@PathVariable String id, @RequestBody @Valid Note noteDetails) throws ResourceNotFoundException {
+    public ResponseEntity<Note> updateNote(@PathVariable String id, @RequestBody @Valid Note noteDetails) throws ResourceNotFoundException {
         logger.info("calling method Update note : id = " + id
             + " ; RequestBody = " + noteDetails.toString());
         Optional<Note> optionalNote = noteService.findById(id);
