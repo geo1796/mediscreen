@@ -3,6 +3,7 @@ package report.controller;
 import feign.FeignException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import report.exception.ResourceNotFoundException;
 import report.model.Note;
 import report.model.Patient;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class ReportController {
 

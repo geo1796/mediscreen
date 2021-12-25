@@ -1,0 +1,10 @@
+<h3>Diabetes report</h3>
+<div [hidden]="submitted || error" (click)="generateReport()" class="btn btn-info">Generate report</div>
+
+<div [hidden]="!submitted || error">
+  Patient is {{ report.patientAge }} years old and his diabetes assessment is {{ report.assessment }}
+</div>
+
+<button [hidden]="!error" class="btn btn-danger">
+  Something wrong happened, please try again later.
+</button>

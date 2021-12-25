@@ -12,6 +12,7 @@ import { NoteDetailsComponent } from './note-details/note-details.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { UpdateNoteComponent } from './update-note/update-note.component';
+import { ReportComponent } from './report/report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { UpdateNoteComponent } from './update-note/update-note.component';
     NoteDetailsComponent,
     NoteListComponent,
     CreateNoteComponent,
-    UpdateNoteComponent
+    UpdateNoteComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
