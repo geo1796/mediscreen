@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import report.model.Patient;
 
 
-@FeignClient(name = "patient", url = "localhost:8081")
+@FeignClient(name = "patient", url = "${patient.base-path}")
 public interface PatientClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/patient/{patientId}")

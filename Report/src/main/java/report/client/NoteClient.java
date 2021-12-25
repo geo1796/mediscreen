@@ -8,7 +8,7 @@ import report.model.Note;
 
 import java.util.List;
 
-@FeignClient(name = "note", url = "localhost:8082")
+@FeignClient(name = "note", url = "${note.base-path}")
 public interface NoteClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/patHistory/{patientId}")
