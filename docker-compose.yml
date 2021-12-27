@@ -1,5 +1,28 @@
-version: '2'
+version: '3'
 services:
+
+  mysqldb:
+    image: mysql:8
+    container_name: mysqldb
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: rootroot
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql
+    networks:
+      - mediscreen-network
+
+  mongodb:
+    image: mongo:5
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - /data/db
+    networks:
+      - mediscreen-network
 
   report:
     container_name: report
@@ -20,21 +43,31 @@ services:
 
   note:
     container_name: note
+    command:
+      "--spring.profiles.active=docker"
     build:
       context: Notes
     image: note:latest
     ports:
       - "8082:8082"
+    depends_on:
+      mongodb:
+        condition: service_started
     networks:
       - mediscreen-network
 
   patient:
     container_name: patient
+    command:
+      "--spring.profiles.active=docker"
     build:
       context: Patients
     image: patient:latest
     ports:
       - "8081:8081"
+    depends_on:
+      mysqldb:
+        condition: service_started
     networks:
       - mediscreen-network
 
