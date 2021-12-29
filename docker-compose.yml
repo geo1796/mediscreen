@@ -10,7 +10,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - /var/lib/mysql
+      - mysql_db_data_container:/var/lib/mysql
     networks:
       - mediscreen-network
 
@@ -20,9 +20,17 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - /data/db
+      - mongodb_data_container:/data/db
     networks:
       - mediscreen-network
+
+  angular:
+    container_name: angular_mediscreen
+    build:
+      context: mediscreen-front-angular
+    image: angular_mediscreen:latest
+    ports:
+      - "4200:4200"
 
   report:
     container_name: report
@@ -70,6 +78,10 @@ services:
         condition: service_started
     networks:
       - mediscreen-network
+
+volumes:
+  mysql_db_data_container:
+  mongodb_data_container:
 
 networks:
   mediscreen-network:
