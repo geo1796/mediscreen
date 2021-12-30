@@ -1,0 +1,246 @@
+{
+  "_id": {
+    "$oid": "61b7591b93fd153fd523a348"
+  },
+  "patientId": 0,
+  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit magna mi, eu fringilla arcu lobortis sed. Vivamus volutpat risus nisl, ac commodo magna eleifend at. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque efficitur lacus pharetra eros fringilla, vitae maximus turpis rutrum. Morbi convallis nunc vitae tellus auctor placerat. Duis a volutpat lectus. In hac habitasse platea dictumst. Nam non enim sed massa suscipit euismod. Proin tincidunt, diam eget posuere fermentum, odio sem posuere nunc, quis pellentesque arcu risus non mi. Aliquam sollicitudin mi et sollicitudin feugiat. Aliquam ultricies tincidunt enim, sit amet molestie massa pulvinar non.\n\nNulla rhoncus enim eros, eu iaculis diam hendrerit sed. Integer maximus accumsan risus ut consequat. Nam molestie nulla non nulla efficitur dapibus. Donec mollis gravida massa, sit amet commodo nisl ullamcorper nec. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In in suscipit neque. Nullam cursus, metus et vestibulum tempus, risus est ultricies tellus, ac pretium lacus risus in erat. Sed sit amet pellentesque nunc. Suspendisse cursus, libero eget imperdiet pharetra, augue nibh scelerisque dolor, sed euismod ex nisi sed ipsum.\n\nVivamus condimentum, ex a rutrum molestie, purus felis varius eros, eget viverra urna arcu fermentum turpis. Donec turpis quam, mattis pretium congue sed, consectetur non lorem. Fusce vehicula ut tellus non iaculis. Suspendisse at nibh a felis ornare laoreet. Ut rhoncus consequat metus. Proin semper libero a placerat iaculis. Nulla tincidunt eros arcu, commodo faucibus tortor pulvinar eu. Aenean eu iaculis neque.\n\nCras eleifend, tellus eget gravida gravida, nisi ipsum malesuada augue, vel lobortis diam urna eget urna. Proin tristique, leo sed tempor dapibus, est lorem gravida nibh, nec volutpat enim nulla vitae orci. Maecenas sed consequat eros, eget feugiat erat. Sed a nulla facilisis, vehicula nulla a, tincidunt dolor. Cras interdum erat felis, ac ornare lectus malesuada vel. Aliquam erat volutpat. Etiam luctus congue risus, at blandit dolor congue sit amet. Sed pellentesque mauris quis mauris ultricies sagittis. Suspendisse condimentum velit id odio tristique, at placerat nibh lacinia. Vestibulum risus urna, feugiat a risus vel, convallis elementum sapien. Ut a tincidunt nisi, sit amet ultricies ex. Nullam commodo augue a massa congue, non accumsan nunc dapibus. Vestibulum vel mauris malesuada, interdum sapien in, feugiat massa. Donec nec imperdiet odio, sit amet pulvinar nisi. Nulla non pellentesque urna, eu interdum lorem. Nulla venenatis nec nisi vitae venenatis.\n\nQuisque consequat gravida nisl, at ultrices massa tempus a. Vestibulum non facilisis ante. Sed id urna magna. Curabitur lobortis pretium diam, eu consequat elit facilisis ac. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam convallis, leo vitae imperdiet luctus, nunc leo laoreet dui, rutrum aliquet augue odio ut sapien. Mauris finibus elit imperdiet, venenatis sem id, dignissim arcu. Quisque lacinia pretium velit, sed iaculis turpis interdum sed. Praesent commodo cursus neque, sit amet porta tellus.",
+  "creationDate": {
+    "$date": "2021-12-12T23:00:00Z"
+  },
+  "lastUpdate": {
+    "$date": "2021-12-12T23:00:00Z"
+  },
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e0e765b52e1856320f15"
+  },
+  "patientId": 1,
+  "content": "Le patient déclare qu'il « se sent très bien »\nPoids égal ou inférieur au poids recommandé",
+  "creationDate": "21/12/2021 15:12",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e0fa65b52e1856320f16"
+  },
+  "patientId": 1,
+  "content": "\"Le patient déclare qu'il se sent fatigué pendant la journée\nIl se plaint également de douleurs musculaires\nTests de laboratoire indiquant une microalbumine élevée\"",
+  "creationDate": "21/12/2021 15:13",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e10c65b52e1856320f17"
+  },
+  "patientId": 1,
+  "content": "\"Le patient déclare qu'il ne se sent pas si fatigué que ça\nFumeur, il a arrêté dans les 12 mois précédents\nTests de laboratoire indiquant que les anticorps sont élevés\"",
+  "creationDate": "21/12/2021 15:13",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e11865b52e1856320f18"
+  },
+  "patientId": 2,
+  "content": "\"Le patient déclare qu'il ressent beaucoup de stress au travail\nIl se plaint également que son audition est anormale dernièrement\"",
+  "creationDate": "21/12/2021 15:13",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e12065b52e1856320f19"
+  },
+  "patientId": 2,
+  "content": "\"Le patient déclare avoir fait une réaction aux médicaments au cours des 3 derniers mois\nIl remarque également que son audition continue d'être anormale\"",
+  "creationDate": "21/12/2021 15:13",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e12765b52e1856320f1a"
+  },
+  "patientId": 2,
+  "content": "Tests de laboratoire indiquant une microalbumine élevée",
+  "creationDate": "21/12/2021 15:13",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e12e65b52e1856320f1b"
+  },
+  "patientId": 2,
+  "content": "\"Le patient déclare que tout semble aller bien\nLe laboratoire rapporte que l'hémoglobine A1C dépasse le niveau recommandé\nLe patient déclare qu’il fume depuis longtemps\"",
+  "creationDate": "21/12/2021 15:14",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e14065b52e1856320f1c"
+  },
+  "patientId": 3,
+  "content": "Le patient déclare qu'il fume depuis peu",
+  "creationDate": "21/12/2021 15:14",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e14965b52e1856320f1d"
+  },
+  "patientId": 3,
+  "content": "Tests de laboratoire indiquant une microalbumine élevée",
+  "creationDate": "21/12/2021 15:14",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e15265b52e1856320f1e"
+  },
+  "patientId": 3,
+  "content": "\"Le patient déclare qu'il est fumeur et qu'il a cessé de fumer l'année dernière\nIl se plaint également de crises d’apnée respiratoire anormales\nTests de laboratoire indiquant un taux de cholestérol LDL élevé\"",
+  "creationDate": "21/12/2021 15:14",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e16465b52e1856320f1f"
+  },
+  "patientId": 3,
+  "content": "Tests de laboratoire indiquant un taux de cholestérol LDL élevé",
+  "creationDate": "21/12/2021 15:15",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e17065b52e1856320f20"
+  },
+  "patientId": 4,
+  "content": "\"Le patient déclare qu'il lui est devenu difficile de monter les escaliers\nIl se plaint également d’être essoufflé\nTests de laboratoire indiquant que les anticorps sont élevés\nRéaction aux médicaments\"",
+  "creationDate": "21/12/2021 15:15",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e17665b52e1856320f21"
+  },
+  "patientId": 4,
+  "content": "Le patient déclare qu'il a mal au dos lorsqu'il reste assis pendant longtemps",
+  "creationDate": "21/12/2021 15:15",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e17c65b52e1856320f22"
+  },
+  "patientId": 4,
+  "content": "\"Le patient déclare avoir commencé à fumer depuis peu\nHémoglobine A1C supérieure au niveau recommandé\"",
+  "creationDate": "21/12/2021 15:15",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e18f65b52e1856320f23"
+  },
+  "patientId": 5,
+  "content": "\"Le patient déclare avoir des douleurs au cou occasionnellement\nLe patient remarque également que certains aliments ont un goût différent\nRéaction apparente aux médicaments\nPoids corporel supérieur au poids recommandé\"",
+  "creationDate": "21/12/2021 15:15",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e19765b52e1856320f24"
+  },
+  "patientId": 5,
+  "content": "\"Le patient déclare avoir eu plusieurs épisodes de vertige depuis la dernière visite.\nTaille incluse dans la fourchette concernée\"",
+  "creationDate": "21/12/2021 15:15",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e1aa65b52e1856320f25"
+  },
+  "patientId": 5,
+  "content": "\"Le patient déclare qu'il souffre encore de douleurs cervicales occasionnelles\nTests de laboratoire indiquant une microalbumine élevée\nFumeur, il a arrêté dans les 12 mois précédents\"",
+  "creationDate": "21/12/2021 15:16",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e1b065b52e1856320f26"
+  },
+  "patientId": 5,
+  "content": "\"Le patient déclare avoir eu plusieurs épisodes de vertige depuis la dernière visite.\nTests de laboratoire indiquant que les anticorps sont élevés\"",
+  "creationDate": "21/12/2021 15:16",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e1be65b52e1856320f27"
+  },
+  "patientId": 6,
+  "content": "\"Le patient déclare qu'il se sent bien\nPoids corporel supérieur au poids recommandé\"",
+  "creationDate": "21/12/2021 15:16",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e1c365b52e1856320f28"
+  },
+  "patientId": 6,
+  "content": "Le patient déclare qu'il se sent bien",
+  "creationDate": "21/12/2021 15:16",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e1dc65b52e1856320f29"
+  },
+  "patientId": 7,
+  "content": "\"Le patient déclare qu'il se réveille souvent avec une raideur articulaire\nIl se plaint également de difficultés pour s’endormir\nPoids corporel supérieur au poids recommandé\nTests de laboratoire indiquant un taux de cholestérol LDL élevé\"",
+  "creationDate": "21/12/2021 15:17",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e1ed65b52e1856320f2a"
+  },
+  "patientId": 8,
+  "content": "\"Les tests de laboratoire indiquent que les anticorps sont élevés\nHémoglobine A1C supérieure au niveau recommandé\"",
+  "creationDate": "21/12/2021 15:17",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e1f865b52e1856320f2b"
+  },
+  "patientId": 9,
+  "content": "\"Le patient déclare avoir de la difficulté à se concentrer sur ses devoirs scolaires\nHémoglobine A1C supérieure au niveau recommandé\"",
+  "creationDate": "21/12/2021 15:17",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e1fe65b52e1856320f2c"
+  },
+  "patientId": 9,
+  "content": "\"Le patient déclare qu'il s’impatiente facilement en cas d’attente prolongée\nIl signale également que les produits du distributeur automatique ne sont pas bons\nTests de laboratoire signalant des taux anormaux de cellules sanguines\"",
+  "creationDate": "21/12/2021 15:17",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e20565b52e1856320f2d"
+  },
+  "patientId": 9,
+  "content": "\"Le patient signale qu'il est facilement irrité par des broutilles\nIl déclare également que l'aspirateur des voisins fait trop de bruit\nTests de laboratoire indiquant que les anticorps sont élevés\"",
+  "creationDate": "21/12/2021 15:17",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e21465b52e1856320f2e"
+  },
+  "patientId": 10,
+  "content": "Le patient déclare qu'il n'a aucun problème",
+  "creationDate": "21/12/2021 15:17",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e21a65b52e1856320f2f"
+  },
+  "patientId": 10,
+  "content": "\"Le patient déclare qu'il n'a aucun problème\nTaille incluse dans la fourchette concernée\nHémoglobine A1C supérieure au niveau recommandé\"",
+  "creationDate": "21/12/2021 15:18",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e22165b52e1856320f30"
+  },
+  "patientId": 10,
+  "content": "\"Le patient déclare qu'il n'a aucun problème\nPoids corporel supérieur au poids recommandé\nLe patient a signalé plusieurs épisodes de vertige depuis sa dernière visite\"",
+  "creationDate": "21/12/2021 15:18",
+  "_class": "notes.model.Note"
+}{
+  "_id": {
+    "$oid": "61c1e22765b52e1856320f31"
+  },
+  "patientId": 10,
+  "content": "\"Le patient déclare qu'il n'a aucun problème\nTests de laboratoire indiquant une microalbumine élevée\"",
+  "creationDate": "21/12/2021 15:18",
+  "_class": "notes.model.Note"
+}
