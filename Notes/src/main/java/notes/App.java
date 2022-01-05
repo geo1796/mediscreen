@@ -20,7 +20,6 @@ public class App implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Locale.setDefault(Locale.FRANCE); //otherwise parsing problems happen in docker container due to its locale being US
-        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT)));
+        Locale.setDefault(Locale.FRANCE); //otherwise, parsing problems happen in docker container due to its locale being US
     }
 }
