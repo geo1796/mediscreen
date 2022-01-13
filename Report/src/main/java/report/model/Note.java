@@ -1,12 +1,9 @@
 package report.model;
 
-import lombok.Getter;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-@Getter
 public class Note implements Comparable<Note>{
 
     private String id;
@@ -47,5 +44,13 @@ public class Note implements Comparable<Note>{
             return -1;
         }
         return 0;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
     }
 }

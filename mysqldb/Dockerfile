@@ -1,2 +1,2 @@
 FROM mysql:8
-COPY mediscreen.sql mediscreen.sql
+ADD mediscreen.sql /docker-entrypoint-initdb.d/mediscreen.sql

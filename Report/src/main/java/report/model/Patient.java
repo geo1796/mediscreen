@@ -1,9 +1,5 @@
 package report.model;
 
-
-import lombok.Getter;
-
-@Getter
 public class Patient {
 
     private long id;
@@ -31,5 +27,13 @@ public class Patient {
                 " / address = " + address +
                 " / phoneNumber = " + phoneNumber +
                 " / dateOfBirth = " + birthdate + " ]";
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public String getSex() {
+        return sex;
     }
 }

@@ -31,7 +31,7 @@ public class Patient {
     @NotBlank(message = "address is mandatory")
     private String address;
     @NotBlank(message = "Phone number must be 10 digits")
-    @Pattern(regexp="([0-9]{3}-[0-9]{3}-[0-9]{4})") //only digits are accepted
+    @Pattern(regexp="([0-9]{3}-[0-9]{3}-[0-9]{4})") //only digits are accepted following this pattern XXX-XXX-XXXX
     private String phoneNumber;
     @ValidBirthdate
     private String birthdate;

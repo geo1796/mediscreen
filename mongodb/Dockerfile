@@ -1,2 +1,2 @@
 FROM mongo:5
-COPY note.json note.json
+ADD init-mongo.js /docker-entrypoint-initdb.d/init-mongo.js

@@ -1,6 +1,3 @@
-/*
-SOURCE C:/Users/geoff/OneDrive/Bureau/OpenClassroom/P9/mediscreen.sql
-*/
 
 -- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
 --
