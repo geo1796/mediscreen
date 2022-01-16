@@ -4,7 +4,7 @@ services:
   mysqldb:
     build:
       context: mysqldb
-    container_name: mysqldb
+    container_name: mediscreen_mysqldb
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: rootroot
@@ -15,25 +15,25 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_db_data_container:/var/lib/mysql
+      - mediscreen_mysqldb_data_container:/var/lib/mysql
     networks:
       - mediscreen-network
 
   mongodb:
     build:
       context: mongodb
-    container_name: mongodb
+    container_name: mediscreen_mongodb
     ports:
       - 27017:27017
     volumes:
-      - mongodb_data_container:/data/db
+      - mediscreen_mongodb_data_container:/data/db
     environment:
       MONGO_INITDB_DATABASE: mediscreen
     networks:
       - mediscreen-network
 
   angular:
-    container_name: angular_mediscreen
+    container_name: mediscreen_angular
     build:
       context: mediscreen-front-angular
     image: angular_mediscreen:latest
@@ -41,7 +41,7 @@ services:
       - "4200:4200"
 
   report:
-    container_name: report
+    container_name: mediscreen_report
     command:
       "--spring.profiles.active=docker"
     build:
@@ -58,7 +58,7 @@ services:
       - mediscreen-network
 
   note:
-    container_name: note
+    container_name: mediscreen_note
     command:
       "--spring.profiles.active=docker"
     build:
@@ -73,7 +73,7 @@ services:
       - mediscreen-network
 
   patient:
-    container_name: patient
+    container_name: mediscreen_patient
     command:
       "--spring.profiles.active=docker"
     build:
@@ -88,8 +88,8 @@ services:
       - mediscreen-network
 
 volumes:
-  mysql_db_data_container:
-  mongodb_data_container:
+  mediscreen_mysqldb_data_container:
+  mediscreen_mongodb_data_container:
 
 networks:
   mediscreen-network:
