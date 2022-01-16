@@ -36,7 +36,7 @@ services:
     container_name: mediscreen_angular
     build:
       context: mediscreen-front-angular
-    image: angular_mediscreen:latest
+    image: mediscreen_angular:latest
     ports:
       - "4200:4200"
 
@@ -46,7 +46,7 @@ services:
       "--spring.profiles.active=docker"
     build:
       context: Report
-    image: report:latest
+    image: mediscreen_report:latest
     ports:
       - "8080:8080"
     depends_on:
@@ -63,7 +63,7 @@ services:
       "--spring.profiles.active=docker"
     build:
       context: Notes
-    image: note:latest
+    image: mediscreen_note:latest
     ports:
       - "8082:8082"
     depends_on:
@@ -78,7 +78,7 @@ services:
       "--spring.profiles.active=docker"
     build:
       context: Patients
-    image: patient:latest
+    image: mediscreen_patient:latest
     ports:
       - "8081:8081"
     depends_on:
