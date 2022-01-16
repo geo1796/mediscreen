@@ -39,11 +39,10 @@ N'oubliez pas de démarrer Mysql avant de lancer le microservice patient.
 ### Lancer l'application via Docker
 Vous pouvez importer le projet dans un IDE de votre choix et créer 
 vous-même les images en ligne de commande en suivant ces deux étapes :
-- Placez-vous dans le dossier mediscreen.
-- exécutez la commande : 
-```
-docker-compose up --build
-```
+- Effectuez un Maven Clean Install, soit via votre IDE soit en ligne de commande : 
+```mvn clean install```
+- En ligne de commande, placez-vous dans le dossier mediscreen et éxéctuter la commande : 
+```docker-compose up --build```
 Une fois les images créées, les bases de données des conteneurs
 mysqld et mongodb sont automatiquement peuplées et l'application
 va se lancer : rendez-vous sur localhost:4200
